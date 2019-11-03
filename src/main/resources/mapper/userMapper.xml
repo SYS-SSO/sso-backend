@@ -32,4 +32,16 @@
         where haa02c=#{username,jdbcType=VARCHAR}
         limit 1
     </select>
+
+    <select id="selectUsersByPageAndSize" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `haa`
+        limit #{page,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAllCount" resultType="int">
+        select count(`haa01i`)
+        from `haa`
+    </select>
 </mapper>

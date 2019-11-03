@@ -1,5 +1,6 @@
 package com.example.wcnm.controller;
 
+import com.example.wcnm.DTO.Page;
 import com.example.wcnm.DTO.ResultDTO;
 import com.example.wcnm.model.User;
 import com.example.wcnm.service.IUserService;
@@ -8,11 +9,9 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -51,4 +50,22 @@ public class UserController {
         }
         return 0;
     }
+
+    @GetMapping(value = "/getUserLs")
+    public ResultDTO<List<User>> getUserLsByPageAndSize(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                             @RequestParam(value = "size",defaultValue = "10")Integer size){
+        ResultDTO<List<User>> listResultDTO = new ResultDTO<>();
+        if(Objects.isNull(page)||Objects.isNull(size)){
+            return listResultDTO;
+        }
+        try {
+            listResultDTO.setPage(new Page(userService.getAllCount(), page, size));
+            List<User> users = userService.selectUsersByPageAndSize(page, size);
+            listResultDTO.setBody(users);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listResultDTO;
+    }
+
 }

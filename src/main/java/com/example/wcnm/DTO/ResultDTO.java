@@ -1,5 +1,6 @@
 package com.example.wcnm.DTO;
 
+//import com.github.pagehelper.Page;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
@@ -15,4 +16,5 @@ public class ResultDTO<T> {
     private String msg;
     private T body;
 
+    private Page page;
 }

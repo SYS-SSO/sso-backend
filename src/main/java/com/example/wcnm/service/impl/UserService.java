@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 @Service
 public class UserService implements IUserService {
 
@@ -25,5 +27,19 @@ public class UserService implements IUserService {
     @Override
     public void insert(User user) {
         userMapper.insert(user);
+    }
+
+    @Override
+    public List<User> selectUsersByPageAndSize(int page, int size) {
+        if(!(page>0 && size>0)){
+            return null;
+        }
+        int start = page - 1;
+        return userMapper.selectUsersByPageAndSize(start*size,page*size);
+    }
+
+    @Override
+    public int getAllCount() {
+        return userMapper.getAllCount();
     }
 }
