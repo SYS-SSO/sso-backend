@@ -8,7 +8,7 @@
     <resultMap id="BaseResultMap" type="com.example.wcnm.model.User">
         <result column="haa01i" property="id" jdbcType="INTEGER"/>
         <result column="haa02c" property="userName" jdbcType="VARCHAR"/>
-        <result column="haa03c" property="password" jdbcType="VARCHAR"/>
+<!--        <result column="haa03c" property="password" jdbcType="VARCHAR"/>-->
         <result column="haa04b" property="sex" jdbcType="BIT"/>
         <result column="haa05c" property="salt" jdbcType="VARCHAR"/>
     </resultMap>
