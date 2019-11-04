@@ -11,18 +11,25 @@
 <!--        <result column="haa03c" property="password" jdbcType="VARCHAR"/>-->
         <result column="haa04b" property="sex" jdbcType="BIT"/>
         <result column="haa05c" property="salt" jdbcType="VARCHAR"/>
+        <result column="haa06c" property="imgSrc" jdbcType="VARCHAR"/>
+        <result column="haa07c" property="desc" jdbcType="VARCHAR"/>
+        <result column="haa08t" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="haa09c" property="blogUrl" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        haa01i,haa02c,haa03c,haa04b,haa05c
+        haa01i,haa02c,haa04b,haa05c,haa06c,haa07c,haa08t,haa09c
     </sql>
 
     <insert id="insert" parameterType="User">
-        insert into `haa` (haa02c,haa03c,haa04b,haa05c)
+        insert into `haa` (haa02c,haa03c,haa04b,haa05c,haa06c,haa07c,haa09c)
         values (#{user.userName,jdbcType=VARCHAR},
         #{user.password,jdbcType=VARCHAR},
         #{user.sex,jdbcType=BIT},
         #{user.salt,jdbcType=VARCHAR})
+        #{user.imgSrc,jdbcType=VARCHAR})
+        #{user.desc,jdbcType=VARCHAR})
+        #{user.blogUrl,jdbcType=VARCHAR})
     </insert>
 
     <select id="selectUserByUserName" resultMap="BaseResultMap">

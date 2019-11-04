@@ -26,16 +26,15 @@ public class UserController {
     @PostMapping("/signup")
     public ResultDTO signUp(@RequestBody User user) {
         if(validateUser(user.getUserName()) == 1){
-            ResultDTO<Object> resultDTO = ResultDTO.builder()
-                    .code(202)
-                    .msg("对不起，该用户名已被注册，请使用其他用户名!")
-                    .build();
-
+            ResultDTO<Object> resultDTO = new ResultDTO();
+            resultDTO.setCode(202);
+            resultDTO.setMsg("对不起，该用户名已被注册，请使用其他用户名!");
             return resultDTO;
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.insert(user);
-        ResultDTO<Object> result = ResultDTO.builder().msg("恭喜你，注册成功!").build();
+        ResultDTO<Object> result = new ResultDTO();
+        result.setMsg("恭喜你，注册成功!");
         return result;
     }
 

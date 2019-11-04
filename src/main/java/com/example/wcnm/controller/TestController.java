@@ -13,9 +13,8 @@ public class TestController {
 
     @GetMapping("/test")
     public ResultDTO test(){
-        ResultDTO<Object> res = ResultDTO.builder()
-                .msg("这是一个测试接口")
-                .build();
+        ResultDTO<Object> res = new ResultDTO();
+        res.setMsg("这是一个测试接口");
         return res;
     }
 }
